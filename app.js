@@ -94,4 +94,4 @@ app.get("*", function(req, res){
 app.post('/login',
 	passport.authenticate('local-login', {successRedirect : "/search", failureRedirect : "/auth/login"}));
 		
-app.listen(80)
+app.listen(80);
