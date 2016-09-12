@@ -1,5 +1,5 @@
 var fs = require("fs");
-var Done = require($.concat("/", __dirname, "/done.js"));
+var Done = require($.concat("/", __dirname, "Components/done.js"));
 class MainModule{
 
 	constructor(){
