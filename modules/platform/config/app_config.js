@@ -1,6 +1,6 @@
 module.exports = {
 	server : {
-		port : 3000,
+		port : 80,
 		name : "METROPOLIA-LOGGER",
 		defaultDateFormat : "dd.mm.yyyy hh:ii:ss",
 		defaultShortDateFormat : "dd.mm.yyyy"
