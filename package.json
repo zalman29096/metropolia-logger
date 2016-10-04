@@ -5,9 +5,9 @@
   "engines": {
     "node": "6.2.0"
   },
-  "main": "app.js",
+  "main": "modules/platform/app.js",
   "scripts": {
-    "start": "node --harmony app.js"
+    "start": "node --harmony modules/platform/app.js"
   },
   "dependencies": {
     "bcryptjs": "^2.3.0",
