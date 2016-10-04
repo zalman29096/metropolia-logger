@@ -2,7 +2,9 @@ class Search{
 
 	index(done){
 		done.render({})
-		//this.render(res, {});
+	}
+	getResult(done){
+		
 	}
 }
 

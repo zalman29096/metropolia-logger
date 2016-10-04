@@ -24,6 +24,32 @@ module.exports = {
 		methods : {
 			"index" : {
 				method : "GET"
+			},
+			"getResult" : {
+				method : "POST",
+				payloadSchema : {
+					application : String,
+					searchEntry : String
+				}
+			}
+		}
+	},
+	"Application" : {
+		methods : {
+			"index" : {
+				method : "GET"
+			},
+			"saveApp" : {
+				method : "POST"
+			},
+			"removeApp" :{
+				method : "POST",
+				payloadSchema : {
+					id : {
+						elemType : String,
+						subtype : "ObjectId"
+					}
+				}
 			}
 		}
 	}
