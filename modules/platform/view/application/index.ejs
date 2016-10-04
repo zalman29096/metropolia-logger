@@ -16,10 +16,25 @@
 </div>
 
 <div class = "row">
-	<% apps.forEach(function(app){ %>
-	<div class = "col-md-4">
-		<h2><%- app.name%></h2>
+	
+	<div class = "col-md-12">
+		<table class = "table table-striped">
+			<thead>
+				<th>Name</th>
+				<th>Token</th>
+				<th>Logs</th>
+			</thead>
+			<tbody>
+				<% apps.forEach(function(app){ %>
+				<tr>
+					<td><%- app.name%></td>
+					<td><%- app.token%></td>
+					<td><%- app.logsTotal%></td>
+				</tr>
+				<% }); %>
+			</tbody>
+		</table>
 	</div>
 	
-	<% }); %>
+	
 </div>

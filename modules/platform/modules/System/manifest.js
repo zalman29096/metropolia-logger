@@ -17,6 +17,18 @@ module.exports = {
 				method: "GET",
 				hasPayload: false,
 				public: true
+			},
+			"register" : {
+				method : "GET",
+				public : true
+			},
+			"createUser" : {
+				method : "POST",
+				public : true,
+				payloadSchema : {
+					username : String,
+					password : String
+				}
 			}
 		}
 	},
@@ -28,8 +40,8 @@ module.exports = {
 			"getResult" : {
 				method : "POST",
 				payloadSchema : {
-					application : String,
-					searchEntry : String
+					token : String,
+					search : String
 				}
 			}
 		}
@@ -50,6 +62,16 @@ module.exports = {
 						subtype : "ObjectId"
 					}
 				}
+			}
+		}
+	},
+	"Postlog": {
+		methods : {
+			"index" : {
+				method : "POST",
+				payloadIsJson : true,
+				payloadKey : "log",
+				skipValidation : true
 			}
 		}
 	}

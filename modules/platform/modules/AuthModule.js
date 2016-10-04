@@ -20,6 +20,20 @@ class Auth{
 		req.logout();
 		done.redirect("/")
 	}
+	register(done){
+		done.render({})
+	}
+	createUser(done){
+		done.requestData.password = node_modules.bCrypt.hashSync(done.requestData.password)
+		db.User.findOne({username : done.requestData.username}, function(err, us){
+			if(err || us){
+				done.redirect("/auth/register")
+			}
+			db.User.create(done.requestData, function(err1){
+				done.redirect("/auth/login")
+			})
+		})
+	}
 }
 
 module.exports = Auth;

@@ -5,7 +5,6 @@ class Application{
 		db.Application.find({userId : this.user._id}, function(err, apps){
 			done.render({apps : apps}, err)
 		})
-		
 	} 
 	saveApp(done){
 		done.requestData.userId = this.user._id;
