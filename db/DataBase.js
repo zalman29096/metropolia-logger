@@ -23,7 +23,7 @@ class DB{
 		Log = _Log;
 		this.config = require(__dirname + "/../global_config.js");
 
-		mongoose.connect("mongodb://" + this.config.db.ip + ":" + this.config.db.port + "/" + this.config.db.name);
+		mongoose.connect("mongodb://loggerman:metropolia123" + this.config.db.ip + ":" + this.config.db.port + "/" + this.config.db.name);
 
 		try{
 			var modelsManifest = require(__dirname + "/Models/manifest.js");

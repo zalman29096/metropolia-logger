@@ -1,8 +1,8 @@
 module.exports = {
 	devMode : true,
 	db : {
-		ip : "127.0.0.1",
-		port : 27017,
+		ip : "ds049476.mlab.com",
+		port : 49476,
 		name : "logger",
 		objectPath : __dirname + "/db/DataBase.js"
 	},
