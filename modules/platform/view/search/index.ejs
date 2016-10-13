@@ -1,5 +1,13 @@
 <% layout('./__layout/main.ejs') -%>
+<style>
 
+pre { padding: 5px; margin: 5px; border : none;}
+.string { color: green; }
+.number { color: darkorange; }
+.boolean { color: blue; }
+.null { color: magenta; }
+.key { color: red; }
+</style>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		
@@ -40,6 +48,10 @@
 	})
 	$("#search-form").submit(function(e){
 		e.preventDefault();
+		if(!token){
+			alert("Select application!")
+			return;
+		}
 		$.ajax({
 			url : "/search/getResult",
 			type : "POST",
@@ -48,8 +60,52 @@
 				search : $("#searchCase").val()
 			},
 			success : function(data){
-				$("#search-result").html(JSON.stringify(data.data, null, 4))
+				fillResult(data.data);
 			}
 		})
 	})
+	function fillResult(data){
+		$("#search-result").html("")
+		var sev = {"info" : "success", "error" : "danger"}
+		var logTemplate = 
+			'<div class="panel panel-%SEVERITY%">'+
+				'<div class="panel-heading">%DATE%</div>'+
+    			'<div class="panel-body"><pre>%CODE%</pre></div>'+
+  			'</div>'
+			//'<pre><code class = "prettyprint">%CODE%</code></pre>'
+			data.forEach(function(entry){
+				delete entry._id;
+			
+				$("#search-result").append(
+					logTemplate
+					.replace(/%CODE%/, syntaxHighlight(entry.message))
+					.replace(/%SEVERITY%/, sev[entry.severity])
+					.replace(/%DATE%/, new Date(entry.createdAt))
+				)
+			})
+			if(data.length == 0){
+				$("#search-result").append("<h1> No logs found</h1>")
+			}
+	}
+	function syntaxHighlight(json) {
+		if (typeof json != 'string') {
+			json = JSON.stringify(json, undefined, 4);
+		}
+		json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+		return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+			var cls = 'number';
+			if (/^"/.test(match)) {
+				if (/:$/.test(match)) {
+					cls = 'key';
+				} else {
+					cls = 'string';
+				}
+			} else if (/true|false/.test(match)) {
+				cls = 'boolean';
+			} else if (/null/.test(match)) {
+				cls = 'null';
+			}
+			return '<span class="' + cls + '">' + match + '</span>';
+		});
+	}
 </script>

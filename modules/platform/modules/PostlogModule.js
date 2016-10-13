@@ -10,13 +10,17 @@ class Postlog{
 			db.Log.create({
 				applicationToken : app.token,
 				userId : app.userId,
-				severity : done.requestData.severity,
+				createdAt : new Date(),
+				severity : done.requestData.severity || "info",
 				message : done.requestData.message
 			}, function(err1){
 				if(!err1)
-					db.Application.update({_id : app._id}, {"$inc" : {"logsTotal" : 1}}, function(){})
+					
 					db.Application.update({_id : app._id}, {"$set" : {"lastAccessDate" : new Date()}}, function(){
-						done.status(200)
+						db.Application.update({_id : app._id}, {"$inc" : {"logsTotal" : 1}}, function(){
+							done.status(200)
+						})
+						
 					})
 					
 			})

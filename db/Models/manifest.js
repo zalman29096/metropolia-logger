@@ -21,6 +21,7 @@ module.exports = {
 			applicationToken : String,
 			userId : String,
 			severity : String,
+			createdAt : Date,
 			message : {}
 		}
 	}

@@ -23,6 +23,7 @@
 				<th>Name</th>
 				<th>Token</th>
 				<th>Logs</th>
+				<th>Last access date</th>
 			</thead>
 			<tbody>
 				<% apps.forEach(function(app){ %>
@@ -30,6 +31,7 @@
 					<td><%- app.name%></td>
 					<td><%- app.token%></td>
 					<td><%- app.logsTotal%></td>
+					<td><%- new Date(app.lastAccessDate)%></td>
 				</tr>
 				<% }); %>
 			</tbody>
