@@ -16,3 +16,6 @@ $.ajax(
 		}
 	}
 )
+
+Deploy link:
+https://metropolia-logger.herokuapp.com
